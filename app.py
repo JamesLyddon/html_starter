@@ -6,7 +6,9 @@ from lib.database_connection import get_flask_database_connection
 app = Flask(__name__)
 
 # == Your Routes Here ==
-
+@app.route('/goodbye')
+def get_goodbye():
+    return render_template('goodbye.html', farewell='Bye!')
 
 # == Example Code Below ==
 
@@ -19,7 +21,7 @@ def get_emoji():
     # We use `render_template` to send the user the file `emoji.html`
     # But first, it gets processed to look for placeholders like {{ emoji }}
     # These placeholders are replaced with the values we pass in as arguments
-    return render_template('emoji.html', emoji=':)')
+    return render_template('emoji.html', emoji='^_^')
 
 # This imports some more example routes for you to see how they work
 # You can delete these lines if you don't need them.
