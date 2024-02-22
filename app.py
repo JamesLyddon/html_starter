@@ -58,7 +58,12 @@ def post_albums():
     repository.create(album)
     return '', 200
 
-
+@app.route('/albums/<id>')
+def get_album_by_id(id):
+    connection = get_flask_database_connection(app)
+    repository = AlbumRepository(connection)
+    album = repository.find(id)
+    return render_template('album.html', album=album)
 
 
 
