@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>All Albums</title>
+    <title>Album</title>
     <meta charset="utf-8">
     <style type="text/css">
       body {
@@ -14,15 +14,9 @@
     </style>
   </head>
   <body>
-    <h1>Albums</h1>
-    <ol>
-    {% for album in albums %}
-        <li>
-            <a href=/albums/{{album.id}}>{{album.title}}</a>
-            <p>Released: {{album.release_year}}</p>
-        </li>
-    {% endfor %}
-    </ol>
-    <a href="/artists">Artists</a>
+    <h1>Artist {{artist.id}}</h1>
+        <p>Name: {{artist.name}}</p>
+        <p>Genre: {{artist.genre}}</p>
+        <a href="/artists">back to artists</a>
   </body>
 </html>

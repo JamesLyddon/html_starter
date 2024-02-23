@@ -19,9 +19,21 @@ def get_goodbye():
 def get_artists():
     connection = get_flask_database_connection(app)
     repository = ArtistRepository(connection)
-    return "\n".join(
-        f"{artist}" for artist in repository.all()
-    )
+    artists = repository.all()
+    # return "\n".join(
+    #     f"{artist}" for artist in repository.all()
+    # )
+    return render_template('artists.html', artists=artists)
+
+@app.route('/artists/<id>')
+def get_artist_by_id(id):
+    connection = get_flask_database_connection(app)
+    repository = ArtistRepository(connection)
+    artist = repository.find(id)
+    # return "\n".join(
+    #     f"{artist}" for artist in repository.all()
+    # )
+    return render_template('artist.html', artist=artist)
 
 @app.route('/artists', methods=["POST"])
 def post_artists():
