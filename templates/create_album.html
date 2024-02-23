@@ -1,0 +1,53 @@
+<!-- This is a HTML document -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Create Album</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+      body {
+        font-family:Arial, Helvetica, sans-serif;
+        background-color: whitesmoke;
+        color: #2c2c2c;
+        font-size: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>New Album</h1>
+    <!-- This creates a form that will submit to POST /books -->
+    <form action="/albums" method="post">
+
+      <!-- We check to see if there are any errors from a previous submission -->
+      {% if errors %}
+        <!-- If so, we show them. -->
+        <p class="t-errors">
+          There were errors with your submission: {{ errors }}
+        </p>
+      {% endif %}
+
+      <p>
+        <!-- These `label` tags are important for accessibility -->
+        <label for="title">Title</label>
+
+        <!-- The `type` attribute says what kind of field this is -->
+        <!-- The `name` attribute says what parameter name should be sent to the server -->
+        <!-- The `id` field here is used to link it to the `for` tag in the label -->
+        <input type="text" name="title" id="title">
+      </p>
+      <p>
+        <label for="release year">Release year</label>
+        <input type="text" name="release_year" id="release_year">
+      </p>
+      <p>
+        <label for="artist idr">Artist Id</label>
+        <input type="text" name="artist_id" id="artist_id">
+      </p>
+      <p>
+        <!-- `type` is submit here, to indicate it is a button -->
+        <!-- `value` is used as the button's text -->
+        <input type="submit" value="Create Album">
+      </p>
+    </form>
+  </body>
+</html>

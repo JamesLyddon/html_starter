@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from lib.database_connection import get_flask_database_connection
 from lib.album import Album
 from lib.artist import Artist
@@ -57,6 +57,7 @@ def get_albums():
     # )
     return render_template('albums.html', albums=albums)
 
+# TODO change this to get data from form in create_album.html
 @app.route('/albums', methods=['POST'])
 def post_albums():
     connection = get_flask_database_connection(app)
@@ -67,8 +68,9 @@ def post_albums():
         request.form['release_year'],
         request.form['artist_id'],
     )
-    repository.create(album)
-    return '', 200
+    album = repository.create(album)
+
+    return redirect(f"/albums")
 
 # using path variable i.e. /albums/<id>
 @app.route('/albums/<id>')
@@ -77,6 +79,15 @@ def get_album_by_id(id):
     repository = AlbumRepository(connection)
     album = repository.find(id)
     return render_template('album.html', album=album)
+
+@app.route('/albums/new')
+def create_album():
+    return render_template('create_album.html')
+
+
+
+
+
 
 # == Example Code Below ==
 
