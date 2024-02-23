@@ -66,17 +66,6 @@ def get_album_by_id(id):
     album = repository.find(id)
     return render_template('album.html', album=album)
 
-# using query parameter i.e. /albums?id=1
-# @app.route('/albums')
-# def get_album_by_id():
-#     connection = get_flask_database_connection(app)
-#     repository = AlbumRepository(connection)
-#     id = request.args.get("id") # this line is where we grab the query parameter id
-#     album = repository.find(id)
-#     return render_template('album.html', album=album)
-
-
-
 # == Example Code Below ==
 
 # GET /emoji
