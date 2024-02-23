@@ -18,7 +18,7 @@
     <ol>
     {% for album in albums %}
         <li>
-            <p>Title: {{album.title}}</p>
+            <a href=/albums/{{album.id}}>{{album.title}}</a>
             <p>Released: {{album.release_year}}</p>
         </li>
     {% endfor %}

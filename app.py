@@ -58,6 +58,7 @@ def post_albums():
     repository.create(album)
     return '', 200
 
+# using path variable i.e. /albums/<id>
 @app.route('/albums/<id>')
 def get_album_by_id(id):
     connection = get_flask_database_connection(app)
@@ -65,7 +66,14 @@ def get_album_by_id(id):
     album = repository.find(id)
     return render_template('album.html', album=album)
 
-
+# using query parameter i.e. /albums?id=1
+# @app.route('/albums')
+# def get_album_by_id():
+#     connection = get_flask_database_connection(app)
+#     repository = AlbumRepository(connection)
+#     id = request.args.get("id") # this line is where we grab the query parameter id
+#     album = repository.find(id)
+#     return render_template('album.html', album=album)
 
 
 
