@@ -44,8 +44,8 @@ def post_artists():
         request.form["name"],
         request.form["genre"],
     )
-    repository.create(artist)
-    return '', 200
+    artist = repository.create(artist)
+    return redirect(f"/artists/{artist.id}")
 
 @app.route('/albums')
 def get_albums():
@@ -70,7 +70,7 @@ def post_albums():
     )
     album = repository.create(album)
 
-    return redirect(f"/albums")
+    return redirect(f"/albums/{album.id}")
 
 # using path variable i.e. /albums/<id>
 @app.route('/albums/<id>')
@@ -84,7 +84,9 @@ def get_album_by_id(id):
 def create_album():
     return render_template('create_album.html')
 
-
+@app.route('/artists/new')
+def create_artist():
+    return render_template('create_artist.html')
 
 
 
